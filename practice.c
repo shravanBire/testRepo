@@ -1,81 +1,96 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Define the structure for a node in the linked list
 struct node{
-    int data;
-    struct node* link;
+    int data; // Data part of the node
+    struct node* link; // Pointer to the next node
 };
 
-struct node* createll(struct node* head,int dta){
-    struct node* newnode=(struct node*)malloc(sizeof(struct node));
-    newnode->data=dta;
-    newnode->link=NULL;
-    if(head==NULL){
-        head=newnode;
+// Function to create a linked list and insert a new node at the end
+struct node* createll(struct node* head, int dta){
+    // Allocate memory for a new node
+    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = dta; // Set the data for the new node
+    newnode->link = NULL; // Initialize the link to NULL
+
+    // If the list is empty, the new node becomes the head
+    if(head == NULL){
+        head = newnode;
     }
     else{
-        struct node* temp=head;
-        while(temp->link!=NULL){
-            temp=temp->link;
+        // Traverse to the end of the list and link the new node
+        struct node* temp = head;
+        while(temp->link != NULL){
+            temp = temp->link;
         }
-        temp->link=newnode;
+        temp->link = newnode; // Link the new node
     }
-    return head;
+    return head; // Return the updated head
 }
 
+// Function to create a linked list based on user input
 struct node* create(){
     int a;
     printf("ENTER NUMBER OF ELEMENT:-");
-    scanf("%d",&a);
-    struct node *head=NULL;
-    struct node *cur;
-    for(int i=0;i<a;i++){
+    scanf("%d", &a); // Read the number of elements
+    struct node *head = NULL; // Initialize head to NULL
+    struct node *cur; // Pointer to traverse the list
+
+    // Loop to create nodes based on user input
+    for(int i = 0; i < a; i++){
         int b;
         printf("\nENTER DATA:-");
-        scanf("%d",&b);
-        struct node* new=malloc(sizeof(struct node));
-        new->data=b;
-        new->link=NULL;
-        if(head==NULL){
-            head=new;
+        scanf("%d", &b); // Read data for the new node
+        struct node* new = malloc(sizeof(struct node)); // Allocate memory for new node
+        new->data = b; // Set the data for the new node
+        new->link = NULL; // Initialize the link to NULL
+
+        // If the list is empty, set the new node as head
+        if(head == NULL){
+            head = new;
         }
         else{
-            cur->link=new;
+            cur->link = new; // Link the new node to the current node
         }
-        cur=new;
+        cur = new; // Move current pointer to the new node
     }
-    return head;
+    return head; // Return the head of the list
 }
 
+// Function to display the elements of the linked list
 void show(struct node *head){
-    struct node *temp=head;
-    if(head==NULL){
-        printf("\nList is empty");
+    struct node *temp = head; // Temporary pointer to traverse the list
+    if(head == NULL){
+        printf("\nList is empty"); // If the list is empty
     }
-    while(temp!=NULL){
-        printf("%d ",temp->data);
-        temp=temp->link;
+    while(temp != NULL){
+        printf("%d ", temp->data); // Print the data of each node
+        temp = temp->link; // Move to the next node
     }
-    printf("\n");
+    printf("\n"); // New line after printing the list
 }
 
+// Function to find and print the middle element of the linked list
 void middle_list(struct node *head){
-    struct node *start=head;
-    struct node *end=head;
-    int i=1;
-    while(end->link!=NULL){
-        start=start->link;
-        for(int j=1;j<i*2;j++){
-            if(end->link==NULL){
+    struct node *start = head; // Pointer to traverse from the start
+    struct node *end = head; // Pointer to traverse from the end
+    int i = 1;
+
+    // Traverse the list to find the middle element
+    while(end->link != NULL){
+        start = start->link; // Move start pointer
+        for(int j = 1; j < i * 2; j++){ // Move end pointer
+            if(end->link == NULL){
                 break;
             }
             else{
-                end=end->link;
+                end = end->link;
             }
         }
         i++;
     }
-    printf("\n%d",start->data);
+    printf("\n%d", start->data); // Print the middle element
 }
 
 struct node *reverse_list(struct node *head){
