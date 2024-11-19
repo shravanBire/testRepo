@@ -13,7 +13,7 @@ struct node* createll(struct node* head, int dta){
     struct node* newnode = (struct node*)malloc(sizeof(struct node));
     newnode->data = dta; // Set the data for the new node
     newnode->link = NULL; // Initialize the link to NULL
-
+  // changes done
     // If the list is empty, the new node becomes the head
     if(head == NULL){
         head = newnode;
